@@ -2,6 +2,7 @@ from datetime import datetime
 from helpers.global_references.global_parameters import global_paramenters
 from helpers.logging.log_manager import log_manager
 from helpers.shared_helpers.file_management.file_storage_manager import file_storage_manager
+from ui.shared.ui_manager.gui_manager import gui_manager
 
 
 def main():
@@ -19,16 +20,14 @@ def main():
     initialise_global_parameters(global_param)
 
     logger = log_manager()
+    # this will set up the logger
 
-    logger.log_information('info logging test')
-    logger.log_error_message('error test')
-
-    try:
-        # Some operation that may raise an exception
-        result = 10 / 0
-    except Exception as e:
-        logger.log_exception(e)  # Pass the exception to the logging function
-
+    initialise_ui(
+        global_param,
+        logger
+    )
+    # this will set up the UI
+    
 
 # this will run the necessary initialisers
 def initialise_global_parameters(
@@ -43,6 +42,17 @@ def initialise_global_parameters(
 
     storage_manager.initialise_base_folder()
     # this will set up the base folder
+
+
+def initialise_ui(
+    global_param: global_paramenters,
+    logger: log_manager
+):
+    print('ui interface initialised')
+
+    ui_manager: gui_manager = gui_manager()
+    # this will set up the ui manager
+
 
 
 

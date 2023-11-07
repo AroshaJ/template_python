@@ -10,6 +10,8 @@ from helpers.shared_helpers.file_management.file_storage_manager import file_sto
 # to run when setting up a given logging function
 class log_manager(object):
 
+    _is_initialized = False
+
     def __new__(cls):
         if not hasattr(cls, 'instance'):
             cls.instance = super(log_manager, cls).__new__(cls)
@@ -18,14 +20,20 @@ class log_manager(object):
     
     def __init__(self):
 
-        self.global_params: global_paramenters = global_paramenters()
-        # this will set up the global references
+        if self._is_initialized == False:
 
-        self.logger = logging.getLogger('MyAppLogger')
-        # this will create a central logger
+            self.global_params: global_paramenters = global_paramenters()
+            # this will set up the global references
 
-        self.configure_logger()
-        # this will create the logger
+            self.logger = logging.getLogger('MyAppLogger')
+            # this will create a central logger
+
+            self.configure_logger()
+            # this will create the logger
+
+            self._is_initialized = True
+            # this will ensure that we don't run the 
+            # initialiser again
 
 
     
@@ -57,6 +65,8 @@ class log_manager(object):
 
         # Add the handler to the logger
         self.logger.addHandler(handler)
+
+        self.logger.propagate = False
 
     # this will create the folder for storage of
     # logging files

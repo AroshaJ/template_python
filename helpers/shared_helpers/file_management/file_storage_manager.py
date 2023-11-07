@@ -2,6 +2,8 @@ from helpers.global_references.global_parameters import global_paramenters
 import os
 from ctypes import windll, wintypes, byref
 from pathlib import Path
+import sys
+import shutil
 
 class file_storage_manager():
 
@@ -21,6 +23,20 @@ class file_storage_manager():
     # the following are shared
     # functions across the 
     # respective dependent functions
+
+    # this will return the correct path when using pyinstaller
+    def resource_path(
+        self,
+        relative_path
+    ):
+
+        try:
+            base_path = sys._MEIPASS
+        except Exception:
+            base_path = os.path.abspath(".")
+        
+        return os.path.join(base_path, relative_path)
+        # this will return the absolute path
 
     def get_current_documents_folder(
         self

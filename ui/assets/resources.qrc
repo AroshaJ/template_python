@@ -1,0 +1,14 @@
+<RCC>
+  <qresource prefix="images">
+    <file>under_construction.png</file>
+    <file>main_interface_menu_background.png</file>
+    <file>menu_item_configurations.png</file>
+    <file>menu_item_dashboard.png</file>
+    <file>menu_item_data_drilldown.png</file>
+    <file>menu_item_trade_hub.png</file>
+    <file>menu_item_help_guides.png</file>
+    <file>icon_small.png</file>
+    <file>trade_fusion_icon.png</file>
+    <file>login_background.png</file>
+  </qresource>
+</RCC>
