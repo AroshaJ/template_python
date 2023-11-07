@@ -1,6 +1,9 @@
 import logging
 import logging.handlers
 import os
+from helpers.global_references.global_parameters import global_paramenters
+
+from helpers.shared_helpers.file_management.file_storage_manager import file_storage_manager
 
 
 # this will handle all logging events that need
@@ -14,6 +17,9 @@ class log_manager(object):
         return cls.instance
     
     def __init__(self):
+
+        self.global_params: global_paramenters = global_paramenters()
+        # this will set up the global references
 
         self.logger = logging.getLogger('MyAppLogger')
         # this will create a central logger
@@ -29,12 +35,18 @@ class log_manager(object):
     ):
         self.logger.setLevel(logging.DEBUG)  # Capture all levels of logging
 
+        logging_directory = self.set_up_logging_directory()
+        # this will set up the logging directory
+
         # Define log file name pattern
         log_filename = 'app_log.log'
 
+        # Complete path for the log file
+        log_path = os.path.join(logging_directory, log_filename)
+
         # Use RotatingFileHandler to split the log into multiple files
         handler = logging.handlers.RotatingFileHandler(
-            log_filename, maxBytes=2*1024*1024, backupCount=10, mode='a'
+            log_path, maxBytes=2*1024*1024, backupCount=10, mode='a'
         )
 
         # Define the formatter
@@ -45,6 +57,28 @@ class log_manager(object):
 
         # Add the handler to the logger
         self.logger.addHandler(handler)
+
+    # this will create the folder for storage of
+    # logging files
+    def set_up_logging_directory(
+        self
+    ):
+        storage_manager: file_storage_manager = file_storage_manager(
+            self.global_params
+        )
+        # this will create the storage manager
+
+        root_folder = self.global_params.root_folder_path
+        log_folder_path = root_folder + '\\logs'
+
+        storage_manager.create_folder_if_doesnt_exist(
+            log_folder_path
+        )
+        # this will create the folder path
+
+        return log_folder_path
+
+
 
     
     # ------------------------
