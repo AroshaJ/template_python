@@ -3,6 +3,7 @@ from helpers.global_references.global_parameters import global_paramenters
 from helpers.logging.log_manager import log_manager
 from helpers.shared_helpers.file_management.file_storage_manager import file_storage_manager
 from ui.shared.ui_manager.gui_manager import gui_manager
+import ui.assets.resources
 
 
 def main():
@@ -52,6 +53,9 @@ def initialise_ui(
 
     ui_manager: gui_manager = gui_manager()
     # this will set up the ui manager
+
+    ui_manager.initialise_sign_in_interface()
+    # this will set up the sign in process
 
 
 
