@@ -58,3 +58,13 @@ class global_paramenters(object):
         ["Nirmal","Jayawardena","NirmalJ","Snaddy42"]
     ]
 
+
+
+    # -------------------------------
+    # CHAT GPT CONFIGURATIONS
+    # -------------------------------
+    # The following captures the core 
+    # confurations related to chat gpt
+    chat_gpt_key_name = 'python_projects'
+    chat_gpt_app_key = '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'
+

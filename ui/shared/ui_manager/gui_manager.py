@@ -5,6 +5,7 @@ from PyQt6 import uic
 from PyQt6.QtCore import Qt
 from helpers.global_references.global_parameters import global_paramenters
 from helpers.logging.log_manager import log_manager
+from helpers.shared_helpers.chatgpt_management.chatgpt_manager import chatgpt_manager
 from helpers.shared_helpers.file_management.file_storage_manager import file_storage_manager
 from ui.components.login_page.login_page import login_page
 from ui.components.main_interface.main_interface import main_interface
@@ -91,7 +92,6 @@ class gui_manager(object):
 
         self.initialise_main_menu_items()
         # this will create the menu items
-
 
         self.main_interface_window.show()
 
