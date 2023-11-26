@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1080</width>
+    <height>720</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QWidget" name="widget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1080</width>
+      <height>720</height>
+     </rect>
+    </property>
+    <widget class="QWidget" name="body_container" native="true">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>0</y>
+       <width>890</width>
+       <height>720</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);</string>
+     </property>
+     <widget class="QWidget" name="header_container" native="true">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>890</width>
+        <height>36</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: #F0F0F0;
+</string>
+      </property>
+      <widget class="QLabel" name="header_label">
+       <property name="geometry">
+        <rect>
+         <x>8</x>
+         <y>0</y>
+         <width>511</width>
+         <height>36</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: #1D091A;</string>
+       </property>
+       <property name="text">
+        <string>Page Header</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QStackedWidget" name="body_widget_container">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>36</y>
+        <width>890</width>
+        <height>653</height>
+       </rect>
+      </property>
+      <widget class="QWidget" name="page"/>
+      <widget class="QWidget" name="page_2"/>
+     </widget>
+     <widget class="QWidget" name="footer_container" native="true">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>689</y>
+        <width>890</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: #D1D4D1;
+</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="menu_container" native="true">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>190</width>
+       <height>720</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-image: url(:/assets/main_interface_menu_background.png);</string>
+     </property>
+     <widget class="QLabel" name="application_version">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>697</y>
+        <width>190</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: #D7E7E5;</string>
+      </property>
+      <property name="text">
+       <string>version</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+  </widget>
+ </widget>
+ <resources>
+  <include location="../../assets/resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>

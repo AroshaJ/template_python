@@ -3,17 +3,25 @@ import os
 import sys
 
 from helpers.global_references.global_parameters import global_paramenters
+from helpers.logging.log_manager import log_manager
 
 
-class manage_sign_in():
+class sign_in_manager():
     
     def __init__(self):
         
-        self.global_param = global_paramenters()
+        self.global_params: global_paramenters = global_paramenters()
+        self.logger:log_manager = log_manager()
+        # this will set the global references
+
         self.invalid_attempts = 0
-        self.max_attempts = 3
+        self.max_attempts = self.global_params.max_sign_in_attempts_allowed
         # this will set up the required variables
 
+    # -----------------------------
+    # PROCESSING FUNCTIONS
+    # ----------------------------
+    # these are called directly
 
     # this will attempt to log in the user
     # it will return an array with a 
@@ -26,6 +34,8 @@ class manage_sign_in():
 
         if self.invalid_attempts >= self.max_attempts:
             return_value = [False, "You are locked out"]
+            self.logger.log_information("user locked out f{username}")
+
             return return_value
         # if max attempts have been reached
 
@@ -39,6 +49,9 @@ class manage_sign_in():
         if valid_format == False:
             return_value = [False, "Invalid credentials, please try again"]
             self.invalid_attempts = self.invalid_attempts + 1
+
+            self.logger.log_information("user entered invalid credentials f{username}")
+
             return return_value
         # this will end the function
 
@@ -48,12 +61,22 @@ class manage_sign_in():
         if valid_user == None:
             return_value = [False, "Invalid credentials, please try again"]
             self.invalid_attempts = self.invalid_attempts + 1
+
+            self.logger.log_information("user entered invalid credentials f{username}")
+
             return return_value
         else:
             return_value = [True, "Welcome " + valid_user[0]]
-            self.global_param.currently_logged_in_user = valid_user
+            self.global_params.currently_logged_in_user = valid_user
+
+            self.logger.log_information("user successfully logged in f{username}")
+
             return return_value
 
+    # -----------------------------
+    # SUPPORT FUNCTIONS
+    # ----------------------------
+    # these are called from dependent classes
 
     # this will check if the credentials are of a valid format
     def credentials_are_a_valid_format(
@@ -78,7 +101,7 @@ class manage_sign_in():
         clean_password
     ):
         
-        full_users = self.global_param.user_information
+        full_users = self.global_params.registered_users
         # this will get the full list
 
         for user in full_users:

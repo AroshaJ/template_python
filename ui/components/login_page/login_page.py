@@ -4,6 +4,7 @@ from helpers.global_references.global_parameters import global_paramenters
 from helpers.logging.log_manager import log_manager
 
 from helpers.shared_helpers.file_management.file_storage_manager import file_storage_manager
+from helpers.sign_in.sign_in_manager import sign_in_manager
 
 
 
@@ -21,6 +22,7 @@ class login_page(QMainWindow):
 
         self.global_params: global_paramenters = global_paramenters()
         self.logger:log_manager = log_manager()
+        self.sign_in_manager:sign_in_manager = sign_in_manager()
         # this will set the global references
 
         relative_path_of_ui_file = "ui\components\login_page\login_page.ui"
@@ -71,17 +73,17 @@ class login_page(QMainWindow):
 
         self.logger.log_information('log in attempted for ' + username_value)
 
-        # sign_in_status = self.sign_in_manager.log_in_user(username_value, password_value)
-        # # this will sign in the user
+        sign_in_status = self.sign_in_manager.log_in_user(username_value, password_value)
+        # this will sign in the user
 
-        # if sign_in_status[0] == False:
-        #     message = sign_in_status[1]
-        #     self.invalid_credentials.setText(message)
-        #     # this will set the invalid message
+        if sign_in_status[0] == False:
+            message = sign_in_status[1]
+            self.invalid_credentials.setText(message)
+            # this will set the invalid message
 
-        # else:
-        #     message = sign_in_status[1]
-        #     self.open_main_interface_after_login()
+        else:
+            message = sign_in_status[1]
+            self.open_main_interface_after_login()
 
     # this will clear any error messages
     def clear_error_message(self):
@@ -95,11 +97,11 @@ class login_page(QMainWindow):
     ):
         print('open main interface')
         
-        # self.ui_manager.initialise_main_interface()
-        # # this is done to initialise the respective main interface
+        self.ui_manager.initialise_main_interface()
+        # this is done to initialise the respective main interface
 
-        # self.ui_manager.show_sign_in_interface(False)
-        # # this will hide the sign in interface
+        self.ui_manager.show_sign_in_interface(False)
+        # this will hide the sign in interface
 
 
 
